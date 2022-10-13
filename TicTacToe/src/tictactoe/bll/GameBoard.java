@@ -2,6 +2,7 @@ package tictactoe.bll;
 
 import tictactoe.gui.controller.TicTacViewController;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class GameBoard implements IGameModel {
 
@@ -12,7 +13,7 @@ public class GameBoard implements IGameModel {
     String [][] boardTiles;
 
     public String getNextPlayer() {
-        if (player == "O"){
+        if (Objects.equals(player, "O")){
             player = "X";
         }
         else {
@@ -23,7 +24,7 @@ public class GameBoard implements IGameModel {
 
     /**
      * Attempts to let the current player play at the given coordinates. It the
-     * attempt is succesfull the current player has ended his turn and it is the
+     * attempt is successful the current player has ended his turn, and it is the
      * next players turn.
      *
      * @param col column to place a marker in.
@@ -48,11 +49,7 @@ public class GameBoard implements IGameModel {
             return true;
         }else if(checkDiagonal(boardTiles)){
             return true;
-        } else if (checkForDraw(boardTiles)) {
-            return true;
-        }
-
-        return false;
+        } else return checkForDraw(boardTiles);
     }
 
     /**
@@ -60,7 +57,7 @@ public class GameBoard implements IGameModel {
      */
     private boolean checkRows(String[][] boardTiles) {
         for (int row = 0; row < 3; row++) {
-            if (boardTiles[row][0] == boardTiles[row][1] && boardTiles[row][1] == boardTiles[row][2] && boardTiles[row][0] != null) {
+            if (Objects.equals(boardTiles[row][0], boardTiles[row][1]) && Objects.equals(boardTiles[row][1], boardTiles[row][2]) && boardTiles[row][0] != null) {
                 winner = boardTiles[row][0];
                 return true;
             }
@@ -73,7 +70,7 @@ public class GameBoard implements IGameModel {
      */
     private boolean checkColumns(String[][] boardTiles) {
         for (int col = 0; col < 3; col++) {
-            if (boardTiles[0][col] == boardTiles[1][col] && boardTiles[1][col] == boardTiles[2][col] && boardTiles[0][col] != null) {
+            if (Objects.equals(boardTiles[0][col], boardTiles[1][col]) && Objects.equals(boardTiles[1][col], boardTiles[2][col]) && boardTiles[0][col] != null) {
                 winner = boardTiles[0][col];
                 return true;
             }
@@ -85,10 +82,10 @@ public class GameBoard implements IGameModel {
      * checkDiagonal checks the two diagonals on the board for winning conditions
      */
     private boolean checkDiagonal(String[][] boardTiles) {
-        if (boardTiles[0][0] == boardTiles[1][1] && boardTiles[1][1] == boardTiles[2][2] && boardTiles[0][0] != null) {
+        if (Objects.equals(boardTiles[0][0], boardTiles[1][1]) && Objects.equals(boardTiles[1][1], boardTiles[2][2]) && boardTiles[0][0] != null) {
             winner = boardTiles[0][0];
             return true;
-        }else if (boardTiles[0][2] == boardTiles[1][1] && boardTiles[1][1] == boardTiles[2][0] && boardTiles[0][2] != null){
+        }else if (Objects.equals(boardTiles[0][2], boardTiles[1][1]) && Objects.equals(boardTiles[1][1], boardTiles[2][0]) && boardTiles[0][2] != null){
             winner = boardTiles[0][2];
             return true;}
 
@@ -114,7 +111,6 @@ public class GameBoard implements IGameModel {
      */
     public void newGame() {
         player = "X";
-        for( int i = 0; i < boardTiles.length; i++ )
-            Arrays.fill( boardTiles[i], null );
+        for (String[] boardTile : boardTiles) Arrays.fill(boardTile, null);
     }
 }

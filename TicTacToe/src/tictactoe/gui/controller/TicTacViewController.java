@@ -2,6 +2,7 @@ package tictactoe.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,11 +32,9 @@ public class TicTacViewController implements Initializable {
 
     private IGameModel game;
 
-    private Boolean isGameOver;
+    private static final String [][] boardTiles = new String[3][3];
 
-    private static String [][] boardTiles = new String[3][3];
-
-    private Button [] buttons = new Button[9];
+    private final Button [] buttons = new Button[9];
 
 
     @FXML
@@ -57,10 +56,10 @@ public class TicTacViewController implements Initializable {
             String symbolO = "X";
             String symbolX = "O";
 
-            if (player == "X"){
+            if (Objects.equals(player, "X")){
                 btn.setText(symbolX);
             }
-            else if (player == "O"){
+            else if (Objects.equals(player, "O")){
                 btn.setText(symbolO);
             }
             btn.setDisable(true);
@@ -68,7 +67,7 @@ public class TicTacViewController implements Initializable {
 
             boardTiles[r][c] =  btn.getText();
             setPlayer();
-            isGameOver = game.isGameOver();
+            boolean isGameOver = game.isGameOver();
 
             if (isGameOver)
             {
@@ -82,7 +81,7 @@ public class TicTacViewController implements Initializable {
     }
 
     @FXML
-    private void handleNewGame(ActionEvent event) {
+    private void handleNewGame() {
         game.newGame();
         setPlayer();
         clearBoard();
@@ -104,17 +103,15 @@ public class TicTacViewController implements Initializable {
 
     private void displayWinner() throws IOException {
         String winner = game.getWinner();
-        String message = "";
-        switch (winner)
-        {
-            case "draw":
-                message = "It's a draw :-(";
-                break;
-            default:
-                message = "Player " + winner + " wins!!!";
-                newWindow();
-                break;
+        String message;
+
+        if(Objects.equals(winner, "draw")){
+            message = "It's a draw :-(";
+        }else{
+            message = "Player " + winner + " wins!!!";
+            newWindow();
         }
+
         lblPlayer.setText(message);
     }
 
@@ -125,7 +122,7 @@ public class TicTacViewController implements Initializable {
         Scene scene = new Scene(loader.load());
 
         EndViewController endView = loader.getController();
-        endView.setParentController(this);
+        endView.setParentController();
 
         Stage stage = new Stage();
         stage.setTitle("Results");
@@ -142,6 +139,10 @@ public class TicTacViewController implements Initializable {
                 selectedBtn.setDisable(false);
             }
         }
+    }
+
+    public void setParentController2() {
+
     }
 
     public static String[][] getBoardTiles(){

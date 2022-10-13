@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="Pane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/StartView.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.StartViewController">
+   <children>
+      <ImageView fitHeight="624.0" fitWidth="700.0" layoutY="-224.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/background.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="startButton" layoutX="218.0" layoutY="177.0" mnemonicParsing="false" onAction="#startButton" prefHeight="46.0" prefWidth="165.0" text="Press to start" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="217.0" AnchorPane.topAnchor="177.0" />
+      <Text layoutX="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fill="WHITE" layoutX="206.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to TicTacToe" textAlignment="CENTER" wrappingWidth="213.13671875">
+         <font>
+            <Font name="Algerian" size="33.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

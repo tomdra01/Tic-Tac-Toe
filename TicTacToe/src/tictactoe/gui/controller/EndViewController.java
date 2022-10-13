@@ -8,10 +8,7 @@ public class EndViewController {
     @FXML
     private Label lblEnd;
 
-    private TicTacViewController controller;
-
-    public void setParentController(TicTacViewController controller){
-        this.controller = controller;
+    public void setParentController(){
         lblEnd.setText("You won!");
     }
 }

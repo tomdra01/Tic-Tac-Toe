@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class TicTacToe extends Application
 {
     
@@ -14,7 +16,7 @@ public class TicTacToe extends Application
     {
      
         
-        Parent root = FXMLLoader.load(getClass().getResource("views/TicTacView.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("views/StartView.fxml")));
         
         Scene scene = new Scene(root);
 
