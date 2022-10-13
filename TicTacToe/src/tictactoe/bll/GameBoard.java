@@ -1,7 +1,6 @@
 package tictactoe.bll;
 
 import tictactoe.gui.controller.TicTacViewController;
-
 import java.util.Arrays;
 
 public class GameBoard implements IGameModel {
@@ -13,11 +12,11 @@ public class GameBoard implements IGameModel {
     String [][] boardTiles;
 
     public String getNextPlayer() {
-        if (player == "X"){
-            player = "O";
+        if (player == "O"){
+            player = "X";
         }
         else {
-            player =  "X";
+            player =  "O";
         }
         return player;
     }
